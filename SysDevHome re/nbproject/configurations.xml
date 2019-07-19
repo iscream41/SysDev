@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="SourceFiles" displayName="ソース・ファイル" projectFiles="true">
+      <itemPath>Common.c</itemPath>
+      <itemPath>Excution.c</itemPath>
+      <itemPath>List.c</itemPath>
+      <itemPath>Logger.c</itemPath>
+      <itemPath>ManageVar.c</itemPath>
+      <itemPath>Parse.c</itemPath>
+      <itemPath>main.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="HeaderFiles" displayName="ヘッダー・ファイル" projectFiles="true">
+      <itemPath>Common.h</itemPath>
+      <itemPath>Excution.h</itemPath>
+      <itemPath>List.h</itemPath>
+      <itemPath>Logger.h</itemPath>
+      <itemPath>ManageVar.h</itemPath>
+      <itemPath>Parse.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles" displayName="リソース・ファイル" projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="テスト・ファイル"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="重要なファイル"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+      </compileType>
+      <item path="Common.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Excution.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Excution.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="List.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="List.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Logger.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Logger.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ManageVar.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ManageVar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Parse.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Parse.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="Common.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Excution.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Excution.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="List.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="List.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Logger.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Logger.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ManageVar.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ManageVar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Parse.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Parse.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
