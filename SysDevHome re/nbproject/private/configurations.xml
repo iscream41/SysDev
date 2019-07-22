@@ -30,6 +30,7 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" -d あ.cc</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" test.cc</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" a.cc.cc</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -d test</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -d test.cc</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>"${OUTPUT_PATH}" -d test.cc</runcommand>

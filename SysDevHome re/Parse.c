@@ -215,7 +215,7 @@ TItem* Formula(char* psToken[])
                         return NULL;
                     }
                     else {
-                        pkLeft = JoinNode(pkNode,pkLeft,pkRight);   
+                        pkLeft = JoinNode(pkNode,pkLeft,pkRight); 
                     }
                 }  
             }
@@ -225,10 +225,11 @@ TItem* Formula(char* psToken[])
                 g_iTokenCount++;
 
                 return pkLeft;
+                
             }
             else if(psToken[g_iTokenCount][0] == ';') {
-                
                 return pkLeft;
+                
             }
         }
     }
@@ -288,7 +289,9 @@ TItem* Term(char* psToken[])
                 }  
             }
             else {
+
                 return pkLeft;
+                
             }
         }
     }
@@ -329,13 +332,14 @@ TItem* Factor(char* psToken[])
     }
     //トークンが関数名と一致
     else if(JudgeReserved(psToken[g_iTokenCount]) == 0) {
+       
        pkNode = CreateItem("0", psToken[g_iTokenCount]);
        
        if(pkNode != NULL) {
            //開き丸括弧読み飛ばし
            g_iTokenCount++;
            LOG(DEBUG,"g_iTokenCount = %d",g_iTokenCount);
-           free(psToken[g_iCodeCount]);
+           free(psToken[g_iTokenCount]);
            
            g_iTokenCount++;
            LOG(DEBUG,"g_iTokenCount = %d",g_iTokenCount);
@@ -361,6 +365,7 @@ TItem* Factor(char* psToken[])
        }  
     }
     
+    //トークンが変数
     else if(isalpha(psToken[g_iTokenCount][0])) {
         
         pkLeft = CreateItem("0",psToken[g_iTokenCount]);
@@ -376,6 +381,7 @@ TItem* Factor(char* psToken[])
                     pkRight = Formula(psToken);
                     
                     if(pkRight != NULL) {
+                        
                         pkNode = JoinNode(pkNode,pkLeft,pkRight);
                         return pkNode;
                     }

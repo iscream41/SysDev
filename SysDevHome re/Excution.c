@@ -36,7 +36,7 @@ int Excution(TItem* pkNode) {
        
     
     if(pkNode != NULL) {
-        LOG(DEBUG,"ノード : %s",pkNode->pValue);
+        LOG(DEBUG,"ノード : %s",(char*)pkNode->pValue);
         iLeft = Excution(pkNode->pkPrev);
         
         iRight = Excution(pkNode->pkNext);
@@ -49,14 +49,20 @@ int Excution(TItem* pkNode) {
                 || ((char*)pkNode->pValue)[0] == '*' | ((char*)pkNode->pValue)[0] == '/') {
             
             LOG(DEBUG,"演算子 : %s",(char*)pkNode->pValue);
+            
+            //四則演算関数呼び出し
             iErrorFlag = CalcArithmetic(pkNode);
             return iErrorFlag;     
         }
         else if(((char*)pkNode->pValue)[0] == '=') {
+            
+            //代入関数呼び出し
             iErrorFlag = AssignVar(pkNode);
             return iErrorFlag;
         }
-        else if(strcmp((char*)pkNode->pValue,"Print") == 0) {
+        else if(strcmp((char*)pkNode->pValue,FuncPrint) == 0) {
+            
+            //出力関数呼び出し
             iErrorFlag = Output(pkNode);
             return iErrorFlag; 
         }
@@ -69,9 +75,6 @@ int Excution(TItem* pkNode) {
     }    
 }
 
-//----------------------------------------------------------------------------
-// 関数定義
-//----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 //関数名 : CalcArithmetic
 //概要　 : 構文木を受け取り、最下層から四則演算を行う。
@@ -196,13 +199,9 @@ int CalcArithmetic(TItem* pkNode) {
     else {
         printf("不正な演算です。\n");
         return 1;
-    }
-    
+    }   
 }
 
-//----------------------------------------------------------------------------
-// 関数定義
-//----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 //関数名 : AssignVar
 //概要　 : ManegeVarを呼び出し、変数に値を代入する。
@@ -212,12 +211,10 @@ int CalcArithmetic(TItem* pkNode) {
 //履歴　 : 2019.07.10 平大真　新規作成
 //----------------------------------------------------------------------------
 int AssignVar(TItem* pkNode) {
-    
     char* psValue = NULL; //変数に代入する値を格納
     char* psVar = NULL;   //変数を格納
     int iValueLength = 0; //変数に代入する値の文字数を格納
     int i = 0;            //SetVarからの戻り値を格納
-    
     
     //代入する値が変数であるかの判定
     if(isalpha(((char*) pkNode->pkNext->pValue)[0])) {
@@ -241,7 +238,6 @@ int AssignVar(TItem* pkNode) {
 
             return i; 
         }
-        
     }
     //代入する値が変数ではない場合
     else {
@@ -257,12 +253,8 @@ int AssignVar(TItem* pkNode) {
 
         return i; 
     }
-    
 }
 
-//----------------------------------------------------------------------------
-// 関数定義
-//----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 //関数名 : Output
 //概要　 : 構文木を受け取り、ノードの値・文字列を画面に出力
@@ -272,27 +264,88 @@ int AssignVar(TItem* pkNode) {
 //履歴　 : 2019.07.10 平大真　新規作成
 //----------------------------------------------------------------------------
 int Output(TItem* pkNode) {
+    
+    int iWordCount = 0;      //トークン文字数を格納
+    int iByteCount = 0;      //出力した文字のバイト数を格納
+    char* psByteCount = NULL; //出力した文字のバイト数の文字列を格納
+    char* psValue = NULL;    //代入する値を格納
     char* sOutputVar = NULL; //変数の値を格納する変数
     
-    //数値の表示
-    if(isdigit(atoi(pkNode->pkPrev->pValue))) {
-        printf("%s\n",(char*)pkNode->pkPrev->pValue);
-    }
-    //文字列の表示
-    else if(((char*)pkNode->pkPrev->pValue)[0] == '\"') {
-        printf("%s\n",(char*)pkNode->pkPrev->pValue);
-    }
+    iWordCount = strlen((char*)pkNode->pkPrev->pValue);
     
-    else if(isalpha((int)(((char*)pkNode->pkPrev->pValue)[0]))) {
+    //変数である場合
+    if(isalpha((int)(((char*)pkNode->pkPrev->pValue)[0]))) {
+        
+        //指定した変数が存在しているかの判定
         if( (sOutputVar = SearchVar(pkNode->pkPrev)) == NULL) {
             printf("未定義の変数を使用しています。\n");
             LOG(WARN,"%d行目 : 未定義の変数を使用しています。\n",g_iCodeCount);
             return 1;
         }
         else {
+            
+            iWordCount = strlen(sOutputVar);
+            
+            //変数の値が文字列である場合
+            if (sOutputVar[0] == '"') {
+                iByteCount =  printf("%.*s", iWordCount - 2, sOutputVar + 1);
+                printf("\n");
+                
+                //親ノードのvalueを解放
+                free(pkNode->pValue);
+                
+                psByteCount = (char*)malloc(sizeof(char) * iByteCount);
+                sprintf(psByteCount,"%d",iByteCount);
+                strcpy(pkNode->pValue,psByteCount);
+                LOG(DEBUG,"pkNode->pValue %s",(char*)pkNode->pValue);
+            }
+           
+            //変数の値が数値である場合
+            else if(isdigit(sOutputVar[0])){
+                iByteCount = printf("%s",sOutputVar);
+                printf("\n");
+                
+                //親ノードのvalueを解放
+                free(pkNode->pValue);
+
+                psByteCount = (char*)malloc(sizeof(char) * iByteCount);
+                sprintf(psByteCount,"%d",iByteCount);
+                strcpy(pkNode->pValue,psByteCount);
+                LOG(DEBUG,"pkNode->pValue %s",(char*)pkNode->pValue);    
+            }
             LOG(DEBUG,"sOutputVar = %s",sOutputVar);
         }
     }
+    
+    //数値の表示
+    else if(isdigit(((char*)pkNode->pkPrev->pValue)[0])) {
+        
+        iByteCount = printf("%s",(char*)pkNode->pkPrev->pValue);
+        printf("\n");
+        
+        //親ノードのvalueを解放
+        free(pkNode->pValue);
+        
+        psByteCount = (char*)malloc(sizeof(char) * iByteCount);
+        sprintf(psByteCount,"%d",iByteCount);
+        strcpy(pkNode->pValue,psByteCount);
+        LOG(DEBUG,"pkNode->pValue %s",(char*)pkNode->pValue);
+        
+    }
+    //文字列の表示
+    else if(((char*)pkNode->pkPrev->pValue)[0] == '"') {
+       iByteCount =  printf("%.*s",iWordCount - 2,(char*)pkNode->pkPrev->pValue + 1);
+       printf("\n");
+       
+        //親ノードのvalueを解放
+        free(pkNode->pValue);
+        
+        psByteCount = (char*)malloc(sizeof(char) * iByteCount);
+        sprintf(psByteCount,"%d",iByteCount);
+        strcpy(pkNode->pValue,psByteCount);
+        LOG(DEBUG,"pkNode->pValue %s",(char*)pkNode->pValue);   
+    }
+    
     else {
         return 1;
     }

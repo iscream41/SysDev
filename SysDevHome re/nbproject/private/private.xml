@@ -4,7 +4,22 @@
         <activeConfTypeElem>1</activeConfTypeElem>
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Excution.c</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Logger.h</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Excution.h</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Parse.c</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Common.h</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/main.c</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Parse.h</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/ManageVar.c</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Common.c</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/List.h</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/ManageVar.h</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/Logger.c</file>
+            <file>file:/C:/Users/BBC300341/Documents/NetBeansProjects/300341/SystemDevelopmentEx/List.c</file>
+        </group>
     </open-files>
 </project-private>
